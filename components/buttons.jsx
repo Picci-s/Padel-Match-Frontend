@@ -1,42 +1,60 @@
 import React from "react";
-import { Button } from 'react-native-elements';
+import { Button } from "react-native-elements";
 import { StyleSheet, View } from "react-native";
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 // bouton de navigation avec la couleur principale du thème
 export function NavigateButton({ title, onPress, style, titleStyle, icon }) {
-// creation de props afin de les reutiliser dans les différents screens
-    return (
-        <View style={styles.containerButton}>
-            <Button
-                title={title}
-                onPress={onPress}
-                buttonStyle={[styles.navigateButton, style]}
-                titleStyle={[styles.navigateText, titleStyle]}
-                icon={
-                icon && <FontAwesome name={icon} size={20} color="#fcfbf8" style={styles.icon}/>
-                }
+  // creation de props afin de les reutiliser dans les différents screens
+  return (
+    <View style={styles.containerButton} accessible={true}>
+      <Button
+        title={title}
+        onPress={onPress}
+        buttonStyle={[styles.navigateButton, style]}
+        titleStyle={[styles.navigateText, titleStyle]}
+        icon={
+          icon && (
+            <FontAwesome
+              name={icon}
+              size={20}
+              color="#fcfbf8"
+              style={styles.icon}
             />
-        </View>
-    );
+          )
+        }
+        accessibilityLabel={`Navigation : ${title}`}
+        accessibilityRole="button"
+      />
+    </View>
+  );
 }
 
 // bouton de validation d'une action (par ex compléter un formulaire) avec la couleur secondaire du thème
 export function ValidateButton({ title, onPress, style, titleStyle, icon }) {
-
-    return (
-        <View style={styles.containerButton}>
-            <Button
-                title={title}
-                onPress={onPress}
-                buttonStyle={[styles.validateButton, style]}
-                titleStyle={[styles.validateText, titleStyle]}
-                icon={
-                icon && <FontAwesome name={icon} size={20} color="#000414" style={styles.icon} />
-                }            
+  return (
+    <View style={styles.containerButton} accessible={true}>
+      <Button
+        title={title}
+        onPress={onPress}
+        buttonStyle={[styles.validateButton, style]}
+        titleStyle={[styles.validateText, titleStyle]}
+        icon={
+          icon && (
+            <FontAwesome
+              name={icon}
+              size={20}
+              color="#000414"
+              style={styles.icon}
             />
-        </View>
-    );
+          )
+        }
+        accessibilityLabel={`Validation : ${title}`}
+        accessibilityRole="button"
+        accessibilityState={{ disabled: !onPress }}
+      />
+    </View>
+  );
 }
 
 // la taille et la disposition du bouton sont déterminées par containerButton
@@ -45,7 +63,7 @@ const styles = StyleSheet.create({
     margin: 10,
     display: "flex",
     alignItems: "center",
-    justifyContent:'center',
+    justifyContent: "center",
     width: "90%",
   },
 
@@ -55,7 +73,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     minWidth: "100%",
   },
-  
+
   navigateText: {
     color: "#fcfbf8",
     fontFamily: "Cambay",
@@ -76,7 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 700,
   },
-  
+
   icon: {
     marginRight: 15,
   },
